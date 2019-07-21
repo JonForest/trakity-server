@@ -2,7 +2,12 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from os.path import join, isfile, dirname
+from dotenv import load_dotenv
 
+dotenv_path = join(dirname(__file__), '..', '.env')
+if isfile(dotenv_path):
+    load_dotenv(dotenv_path)
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trakity_main.settings')

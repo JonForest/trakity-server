@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Project exclusions
+.env
+
 # OS and IDE
 .DS_Store
 .idea
