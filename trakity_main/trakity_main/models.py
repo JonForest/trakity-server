@@ -10,7 +10,7 @@ class Task(models.Model):
     end_date = models.DateTimeField(null=True, blank=True)
     completed_at = models.DateTimeField(null=True, blank=True)
     priority = models.IntegerField(null=True, blank=True)
-    on_calendar = models.Boolean(default=False)
+    on_calendar = models.BooleanField(default=False)
     rollover_count = models.IntegerField(default=0)
     created_at = models.DateTimeField(blank=True)
     updated_at = models.DateTimeField(blank=True)
