@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path
 from trakity_main.views import TaskViewSet
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('tasks/', TaskViewSet.as_view({'get': 'list'})),
+    path('status/ping', lambda _: HttpResponse('ping')),
+    # See https://www.django-rest-framework.org/api-guide/viewsets/#modelviewset for details
+    path('tasks', TaskViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('tasks/<int:id>', TaskViewSet.as_view({'get': 'retrieve', 'patch': 'update'})),
 ]

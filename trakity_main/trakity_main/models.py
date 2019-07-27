@@ -12,6 +12,8 @@ class Task(models.Model):
     priority = models.IntegerField(null=True, blank=True)
     on_calendar = models.BooleanField(default=False)
     rollover_count = models.IntegerField(default=0)
-    created_at = models.DateTimeField(blank=True)
-    updated_at = models.DateTimeField(blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # Details behind auto_now_add and auto_now here https://docs.djangoproject.com/en/2.2/ref/models/fields/#datefield
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)

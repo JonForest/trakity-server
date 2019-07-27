@@ -8,6 +8,7 @@ __pycache__/
 
 # Project exclusions
 .env
+.pytest_cache
 
 # OS and IDE
 .DS_Store
