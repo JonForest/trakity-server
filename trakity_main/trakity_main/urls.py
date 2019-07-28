@@ -23,5 +23,5 @@ urlpatterns = [
     path('status/ping', lambda _: HttpResponse('ping')),
     # See https://www.django-rest-framework.org/api-guide/viewsets/#modelviewset for details
     path('tasks', TaskViewSet.as_view({'get': 'list', 'post': 'create'})),
-    path('tasks/<int:id>', TaskViewSet.as_view({'get': 'retrieve', 'patch': 'update'})),
+    path('tasks/<int:pk>', TaskViewSet.as_view({'get': 'retrieve', 'patch': 'update'})),
 ]

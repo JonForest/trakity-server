@@ -9,8 +9,9 @@ class TaskViewSet(ModelViewSet):
     """
     serializer_class = TaskSerializer
     pagination_class = None
+    queryset = Task.objects.all()
 
-    def get_queryset(self):
-        return Task.objects.all()\
-            .order_by('-start_date')
-    # .filter(user=self.request.user)\
+    # def get_queryset(self):
+    #     return Task.objects.all()\
+    #         .order_by('-start_date')
+    # # .filter(user=self.request.user)\

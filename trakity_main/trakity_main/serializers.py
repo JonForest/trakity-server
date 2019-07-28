@@ -4,6 +4,10 @@ from trakity_main.models import Task
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
+        # resource_name shouldn't need to be set, but it does for some reason
+        # https://django-rest-framework-json-api.readthedocs.io/en/stable/usage.html#setting-the-resource-name
+        # todo: if ever have time, perhaps log error over this
+        resource_name = 'tasks'
         model = Task
         # exclude = ('user', )
         fields = '__all__' # todo: remove once user added

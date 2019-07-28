@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Task(models.Model):
-    description = models.TextField
+    description = models.TextField()
     # null=True - allow null values, blank=True - allow adding this field to be optional
     detail = models.TextField(null=True, blank=True)
     start_date = models.DateTimeField(null=True, blank=True)
