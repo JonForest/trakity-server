@@ -13,9 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
+from django.conf.urls import include
 from trakity_main.views import TaskViewSet
 
 urlpatterns = [
@@ -24,4 +24,11 @@ urlpatterns = [
     # See https://www.django-rest-framework.org/api-guide/viewsets/#modelviewset for details
     path('tasks', TaskViewSet.as_view({'get': 'list', 'post': 'create'})),
     path('tasks/<int:pk>', TaskViewSet.as_view({'get': 'retrieve', 'patch': 'update'})),
+    path('auth/', include('usertokenauth.urls', namespace='usertokenauth')),
+]
+
+# https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/#adding-login-to-the-browsable-api
+# todo: This allows the Rest Framework web interface to provide a login button. Should probably be removed at some point
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls')),
 ]

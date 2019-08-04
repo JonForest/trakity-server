@@ -1,3 +1,5 @@
+DJANGO_SETTINGS_MODULE=trakity_main.settings
+
 PG_DB=trakity
 PG_USER=
 PG_PASS=
