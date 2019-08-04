@@ -8,7 +8,6 @@ This is the Django API server, able to support multiple types of client (e.g. em
 ## Deploy to server
 
 # TODO items
-* Test the blacklisting of refresh tokens works automatically
 * Import JWT https://github.com/davesque/django-rest-framework-simplejwt
   * Request token is read-once
   * Include userid (guid), role (basic_tasks), email
@@ -29,4 +28,5 @@ This is the Django API server, able to support multiple types of client (e.g. em
   * Why access and refresh tokens separately
   * Can be used to extract user object out of the application so it can work across many applications
 * Make decision on JWT or Expiring Tokens
+* Test the blacklisting of refresh tokens works automatically
 

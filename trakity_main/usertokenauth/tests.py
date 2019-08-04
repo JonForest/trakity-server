@@ -1,6 +1,8 @@
 import pytest
 from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
 
 User = get_user_model()
 
@@ -28,4 +30,26 @@ def test_retrieve_token(db):
     tokens = result.json()
     assert('refresh' in tokens)
     assert('access' in tokens)
+
+
+@pytest.mark.django_db
+def test_blacklisting(db):
+    """
+    This test ensures that a used refresh token is blacklisted and can't be used again
+    """
+    user = User.objects.create_user(username='test', password='password', email='test@trakity.com')
+    user.save()
+    refresh_token = RefreshToken.for_user(user)
+
+    assert(BlacklistedToken.objects.all().count() == 0)
+
+    client = APIClient(HTTP_ACCEPT='application/json')
+    result = client.post("/auth/token/refresh", '{"refresh": "' + str(refresh_token) + '"}',
+                         content_type="application/json")
+    assert(result.status_code == 200)
+
+    result = client.post("/auth/token/refresh", '{"refresh": "' + str(refresh_token) + '"}',
+                         content_type="application/json")
+    assert (result.status_code == 401)
+    assert (BlacklistedToken.objects.all().count() == 1)
 
