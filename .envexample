@@ -5,3 +5,7 @@ PG_USER=
 PG_PASS=
 PG_HOST=localhost
 PG_PORT=5432
+
+SIGNING_KEY=<512bit key>
+APP_SECRET_KEY=<secret key>
+

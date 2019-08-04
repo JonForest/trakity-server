@@ -8,6 +8,7 @@ This is the Django API server, able to support multiple types of client (e.g. em
 ## Deploy to server
 
 # TODO items
+* Test the blacklisting of refresh tokens works automatically
 * Import JWT https://github.com/davesque/django-rest-framework-simplejwt
   * Request token is read-once
   * Include userid (guid), role (basic_tasks), email
@@ -17,7 +18,7 @@ This is the Django API server, able to support multiple types of client (e.g. em
 * Add lots of unit tests around login in, access expiration, and refreshing the token
 * Tests around a user with a valid token fetching their tasks
 
-
+* Set up so user can only fetch their own tasks
 * Copy over pieces of trakity code from the original
 * Get tasks with hard coded user working
 * Why does 127.0.0.1:8000/tasks work but localhost:8000/tasks does not?

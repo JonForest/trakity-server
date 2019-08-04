@@ -1,6 +1,18 @@
 import pytest
 from trakity_main.models import Task
 from rest_framework.test import APIClient
+# Will need to remove User model specific if we pull the Token work out into a separate App
+from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.tokens import RefreshToken
+
+User = get_user_model()
+
+
+def _get_authorised_client():
+    user = User.objects.create_user(username='test', password='password', email='test@trakity.com')
+    user.save()
+    token = RefreshToken.for_user(user)
+    return APIClient(HTTP_AUTHORIZATION=f'Bearer {token.access_token}')
 
 
 def test_ping_pong(client):
@@ -11,7 +23,7 @@ def test_ping_pong(client):
 
 @pytest.mark.django_db
 def test_get_task(db):
-    client = APIClient()
+    client = _get_authorised_client()
 
     task = Task(description='This is a test task')
     task.save()
@@ -25,7 +37,7 @@ def test_get_task(db):
 @pytest.mark.django_db
 def test_post_task(db):
     # todo: Get the client to log in
-    client = APIClient()
+    client = _get_authorised_client()
     description = 'This is a test'
 
     new_task = {
@@ -47,7 +59,7 @@ def test_post_task(db):
 
 @pytest.mark.django_db
 def test_update_task(db):
-    client = APIClient()
+    client = _get_authorised_client()
 
     task = Task(description='This is a test task')
     task.save()

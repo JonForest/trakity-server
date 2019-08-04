@@ -9,6 +9,7 @@ dotenv_path = join(dirname(__file__), '..', '.env')
 if isfile(dotenv_path):
     load_dotenv(dotenv_path)
 
+
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trakity_main.settings')
     try:

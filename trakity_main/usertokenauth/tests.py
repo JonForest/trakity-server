@@ -1,5 +1,4 @@
 import pytest
-from trakity_main.models import Task
 from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
 
