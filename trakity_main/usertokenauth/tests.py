@@ -22,10 +22,10 @@ def test_retrieve_token(db):
     # Test invalid user gets no token
     # Note: because not using the default content_type, need to explicitly set the data to a string and not expect it to
     # json.dumps() as it normally would (and should)
-    result = client.post('/auth/token', '{"username": "test", "password": "not_password"}', content_type="application/json")
+    result = client.post('/auth/token', '{"email": "test@trakity.com", "password": "not_password"}', content_type="application/json")
     assert(result.status_code == 401)
 
-    result = client.post("/auth/token", '{"username": "test", "password": "password"}', content_type="application/json")
+    result = client.post("/auth/token", '{"email": "test@trakity.com", "password": "password"}', content_type="application/json")
     assert(result.status_code == 200)
     tokens = result.json()
     assert('refresh' in tokens)

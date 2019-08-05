@@ -8,17 +8,14 @@ This is the Django API server, able to support multiple types of client (e.g. em
 ## Deploy to server
 
 # TODO items
-* Import JWT https://github.com/davesque/django-rest-framework-simplejwt
-  * Request token is read-once
-  * Include userid (guid), role (basic_tasks), email
-  * See if the non-db backed user object works here
-  
-* Set it up such auth/refresh and tasks part of the app are independent. (i.e. separate Django apps)
-* Add lots of unit tests around login in, access expiration, and refreshing the token
-* Tests around a user with a valid token fetching their tasks
-
-* Set up so user can only fetch their own tasks
-* Copy over pieces of trakity code from the original
+* Include userid (guid), role (basic_tasks), email
+* Implement permissions to ensure that a user can only get their own tasks
+  * Check non-db backed user object is on the request
+    
+* Think about the command line interface structure and dates. Namely, do we want date objects and time separately?
+  Or do we want some kind of timezone aware datetime? Or two fields? date for when only date selected, datetime for when time also selected?
+  Gut feel is that timezone is important once the app goes beyond three people in new zealand.
+* Double check what we want to do with tasks that have a targetDate in the past. Do we want to roll them forward to tomorrow again?
 * Get tasks with hard coded user working
 * Why does 127.0.0.1:8000/tasks work but localhost:8000/tasks does not?
 * How do we turn the API web interface off?
@@ -29,4 +26,6 @@ This is the Django API server, able to support multiple types of client (e.g. em
   * Can be used to extract user object out of the application so it can work across many applications
 * Make decision on JWT or Expiring Tokens
 * Test the blacklisting of refresh tokens works automatically
-
+* Import JWT https://github.com/davesque/django-rest-framework-simplejwt
+  * Request token is read-once
+* Set it up such auth/refresh and tasks part of the app are independent. (i.e. separate Django apps)
