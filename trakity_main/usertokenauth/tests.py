@@ -1,8 +1,9 @@
 import pytest
 from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
+from usertokenauth.serializers import CustomTokenObtainPairSerializer
 
 User = get_user_model()
 
@@ -53,3 +54,19 @@ def test_blacklisting(db):
     assert (result.status_code == 401)
     assert (BlacklistedToken.objects.all().count() == 1)
 
+
+@pytest.mark.django_db
+def test_claims_returned_refresh_request(db):
+    """
+    Test that expected claims have been added to the token
+    """
+    user = User.objects.create_user(username='test', password='password', email='test@trakity.com')
+    user.save()
+    refresh_token = CustomTokenObtainPairSerializer.get_token(user)
+
+    client = APIClient(HTTP_ACCEPT='application/json')
+    result = client.post("/auth/token/refresh", '{"refresh": "' + str(refresh_token) + '"}',
+                         content_type="application/json")
+
+    access_token = AccessToken(result.json()['access'])
+    assert('trakity' in access_token.payload)

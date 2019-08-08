@@ -8,7 +8,6 @@ This is the Django API server, able to support multiple types of client (e.g. em
 ## Deploy to server
 
 # TODO items
-* Include userid (guid), role (basic_tasks), email
 * Implement permissions to ensure that a user can only get their own tasks
   * Check non-db backed user object is on the request
     
@@ -29,3 +28,5 @@ This is the Django API server, able to support multiple types of client (e.g. em
 * Import JWT https://github.com/davesque/django-rest-framework-simplejwt
   * Request token is read-once
 * Set it up such auth/refresh and tasks part of the app are independent. (i.e. separate Django apps)
+* Fix failing tests as 'RefreshToken' doesn't appear t be using my custom functions
+* Include userid (guid), role (basic_tasks), email  

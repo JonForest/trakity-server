@@ -16,15 +16,15 @@ Including another URLconf
 from django.urls import path
 
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
     TokenRefreshView,
 )
+from usertokenauth.views import CustomTokenObtainPairView
 
 # app_name required for namespace. See https://docs.djangoproject.com/en/2.2/ref/urls/#include
 # and https://stackoverflow.com/questions/48608894/impropyconfigurederror-about-app-name-when-using-namespace-in-include
 # todo: worth spending some time getting to the bottom of this if we want to write a training course
 app_name = 'usertokenauth'
 urlpatterns = [
-    path('token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
 ]
