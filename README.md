@@ -8,9 +8,6 @@ This is the Django API server, able to support multiple types of client (e.g. em
 ## Deploy to server
 
 # TODO items
-* Implement permissions to ensure that a user can only get their own tasks
-  * Check non-db backed user object is on the request
-    
 * Think about the command line interface structure and dates. Namely, do we want date objects and time separately?
   Or do we want some kind of timezone aware datetime? Or two fields? date for when only date selected, datetime for when time also selected?
   Gut feel is that timezone is important once the app goes beyond three people in new zealand.
@@ -30,3 +27,6 @@ This is the Django API server, able to support multiple types of client (e.g. em
 * Set it up such auth/refresh and tasks part of the app are independent. (i.e. separate Django apps)
 * Fix failing tests as 'RefreshToken' doesn't appear t be using my custom functions
 * Include userid (guid), role (basic_tasks), email  
+* Implement permissions to ensure that a user can only get their own tasks (CURRENTLY FAILING TESTS)
+  * Check non-db backed user object is on the request
+    

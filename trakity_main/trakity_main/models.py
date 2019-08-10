@@ -18,4 +18,6 @@ class Task(models.Model):
     # Details behind auto_now_add and auto_now here https://docs.djangoproject.com/en/2.2/ref/models/fields/#datefield
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # no validation should be run on the user field being present, as we're adding it programatically from the request
+    # todo: consider adding it in the view if we have custom views rather than after validation in create/update
+    user_id = models.UUIDField(blank=True)
