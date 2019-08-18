@@ -170,6 +170,9 @@ REST_FRAMEWORK = {
     ]
 }
 
+# By default Ember uses dasherised names for multi-word fields
+JSON_API_FORMAT_FIELD_NAMES = 'dasherize'
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
