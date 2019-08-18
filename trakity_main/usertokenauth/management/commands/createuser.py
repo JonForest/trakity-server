@@ -5,9 +5,10 @@ User = get_user_model()
 
 
 class Command(BaseCommand):
-    help = 'Create a user'
+    help = 'Create a user. Usage `python manage.py createuser <username> <password>`'
 
     def add_arguments(self, parser):
+        # Positional arguments that require no switches
         parser.add_argument('email')
         parser.add_argument('password')
 

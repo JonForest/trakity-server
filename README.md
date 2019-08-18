@@ -8,6 +8,7 @@ This is the Django API server, able to support multiple types of client (e.g. em
 ## Deploy to server
 
 # TODO items
+* uwsgi set-up? Maybe a docker container with it all in that I can then deploy to docker? That seems best
 * Think about the command line interface structure and dates. Namely, do we want date objects and time separately?
   Or do we want some kind of timezone aware datetime? Or two fields? date for when only date selected, datetime for when time also selected?
   Gut feel is that timezone is important once the app goes beyond three people in new zealand.
